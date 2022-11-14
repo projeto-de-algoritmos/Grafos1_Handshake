@@ -20,8 +20,8 @@ Temas:
 ## Alunos
 |Matrícula | Aluno |
 | -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
+| 18/0041592  |  Denys Rógeres |
+| 19/0109963  |  João Victor Batista |
 
 ## Sobre 
 Descreva os objetivos do seu projeto e como ele funciona. 
