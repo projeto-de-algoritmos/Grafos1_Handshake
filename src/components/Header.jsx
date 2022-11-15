@@ -4,17 +4,17 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 
 export function Header() {
     return (
-        <AppBar position="fixed">
-            <Toolbar sx={{ 
-                    justifyContent: 'center', 
-                    alignItems: 'center'
+        <AppBar position="static">
+            <Toolbar sx={{
+                justifyContent: 'center',
+                alignItems: 'center'
+            }}>
+                <Typography variant="h1" sx={{
+                    fontFamily: 'Roboto',
+                    fontSize: '1.5rem',
+                    fontWeight: '700',
+                    mr: 0.5
                 }}>
-                <Typography variant="h1" sx={{ 
-                        fontFamily:'Roboto',
-                        fontSize: '1.5rem',
-                        fontWeight: '700',
-                        mr: 0.5
-                    }}> 
                     Handshake
                 </Typography>
                 <HandshakeIcon />
