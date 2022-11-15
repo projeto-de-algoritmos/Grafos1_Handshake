@@ -23,7 +23,7 @@ export function Handshake() {
                 /> : 
             pagina == 1 ? 
                 <Etapa2 membros={membros}/> : 
-                <Etapa3 />
+                <Etapa3 membros={membros}/>
             }
            
         </>
