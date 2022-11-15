@@ -1,63 +1,36 @@
-// create a graph class
 class Graph {
-	// defining vertex array and
-	// adjacent list
-	constructor(noOfVertices)
-	{
-		this.noOfVertices = noOfVertices;
-		this.AdjList = new Map();
-	}
 
-	// functions to be implemented
+    constructor() {
+      this.adjacencyList = {};
+    }
 
-	// addVertex(v)
-	// addEdge(v, w)
-	// printGraph()
+    addVertex(vertex) {
+      if (!this.adjacencyList[vertex]) {
+        this.adjacencyList[vertex] = [];
+      }
+    }
 
-	// bfs(v)
-	// dfs(v)
-}
+    addEdge(source, destination) {
+      if (!this.adjacencyList[source]) {
+        this.addVertex(source);
+      }
+      if (!this.adjacencyList[destination]) {
+        this.addVertex(destination);
+      }
+      this.adjacencyList[source].push(destination);
+      this.adjacencyList[destination].push(source);
+    }
 
-// add vertex to the graph
-addVertex(v)
-{
-	// initialize the adjacent list with a
-	// null array
-	this.AdjList.set(v, []);
-}
+    removeEdge(source, destination) {
+      this.adjacencyList[source] = this.adjacencyList[source].filter(vertex => vertex !== destination);
+      this.adjacencyList[destination] = this.adjacencyList[destination].filter(vertex => vertex !== source);
+    }
 
-// add edge to the graph
-addEdge(v, w)
-{
-	// get the list for vertex v and put the
-	// vertex w denoting edge between v and w
-	this.AdjList.get(v).push(w);
-
-	// Since graph is undirected,
-	// add an edge from w to v also
-	this.AdjList.get(w).push(v);
-}
-
-// Prints the vertex and adjacency list
-printGraph()
-{
-	// get all the vertices
-	var get_keys = this.AdjList.keys();
-
-	// iterate over the vertices
-	for (var i of get_keys)
-{
-		// great the corresponding adjacency list
-		// for the vertex
-		var get_values = this.AdjList.get(i);
-		var conc = "";
-
-		// iterate over the adjacency list
-		// concatenate the values into a string
-		for (var j of get_values)
-			conc += j + " ";
-
-		// print the vertex and its adjacency list
-		console.log(i + " -> " + conc);
-	}
+    removeVertex(vertex) {
+      while (this.adjacencyList[vertex]) {
+        const adjacentVertex = this.adjacencyList[vertex].pop();
+        this.removeEdge(vertex, adjacentVertex);
+      }
+      delete this.adjacencyList[vertex];
+    }
 }
