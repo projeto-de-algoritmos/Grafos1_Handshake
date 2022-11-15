@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Box, TextField, Button, Grid, Typography, MenuItem, Stack } from '@mui/material'
-import HandshakeIcon from '@mui/icons-material/Handshake';
+import React, { useState } from 'react';
+import { Box, TextField, Button, Grid, MenuItem } from '@mui/material'
 
 export function Etapa3({membros}) {
     const [ primeiroNome, setPrimeiroNome ] = useState('')
