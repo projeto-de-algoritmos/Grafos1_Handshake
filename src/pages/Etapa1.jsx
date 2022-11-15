@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import { Box, TextField, Button, Grid, Typography } from '@mui/material'
 
-export function Etapa1() {
-    const [ membros, setMembros ] = useState([''])
+export function Etapa1({membros, setMembros}) {
+
     const [ nomeMembro, setNomeMembro ] = useState('')
-    const [ toggle, setToggle ] = useState(0);
+    const [ toggle, setToggle ] = useState(false);
 
     function handleClick() {
         if(membros.includes(nomeMembro))
-            setToggle(1)
+            setToggle(true)
         else {
-            setToggle(0);
+            setToggle(false);
             setMembros([...membros, nomeMembro]);
             setNomeMembro('')
         }
@@ -32,7 +32,7 @@ export function Etapa1() {
                             variant="outlined"
                             value={nomeMembro}
                             onChange={(event) => {setNomeMembro(event.target.value)}}
-                            error={toggle ? true : false}
+                            error={toggle}
                             helperText={toggle ? 'Nome já existe na lista de membros': ''}
                         />
                     </Grid>
@@ -54,16 +54,16 @@ export function Etapa1() {
                     <Grid item xs={3} />
                     
                     <Grid item xs={4} sx={{
-                        mt: '1rem',  
+                        mt: 2,  
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
                         {membros.map((item, index) => {
-                            return (<Typography sx={{textAlign: 'center'}} mt={1} key={index}>{item}</Typography>)
+                            return (<Typography sx={{textAlign: 'center'}} mt={1.5} key={index}>{item}</Typography>)
                         })}
                     </Grid>
 
-                    <Grid item xs={3} />
+                    <Grid item xs={5} />
                 </Grid>
             </Box>
         </>
