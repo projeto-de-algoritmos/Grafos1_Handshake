@@ -1,36 +1,68 @@
-class Graph {
+import Queue from './queue';
 
-    constructor() {
-      this.adjacencyList = {};
+export default class Graph 
+{
+	constructor(noOfVertices)
+	{
+		this.noOfVertices = noOfVertices;
+		this.AdjList = new Map();
+	}
+
+    addVertex(v)
+    {
+        this.AdjList.set(v, []);
     }
 
-    addVertex(vertex) {
-      if (!this.adjacencyList[vertex]) {
-        this.adjacencyList[vertex] = [];
-      }
+    addEdge(v, w)
+    {
+        this.AdjList.get(v).push(w);
+        this.AdjList.get(w).push(v);
     }
 
-    addEdge(source, destination) {
-      if (!this.adjacencyList[source]) {
-        this.addVertex(source);
-      }
-      if (!this.adjacencyList[destination]) {
-        this.addVertex(destination);
-      }
-      this.adjacencyList[source].push(destination);
-      this.adjacencyList[destination].push(source);
+    printGraph()
+    {
+        var get_keys = this.AdjList.keys();
+
+        for (var i of get_keys)
+        {
+            var get_values = this.AdjList.get(i);
+            var conc = "";
+
+            for (var j of get_values)
+                conc += j + " ";
+
+            console.log(i + " -> " + conc);
+        }
     }
 
-    removeEdge(source, destination) {
-      this.adjacencyList[source] = this.adjacencyList[source].filter(vertex => vertex !== destination);
-      this.adjacencyList[destination] = this.adjacencyList[destination].filter(vertex => vertex !== source);
-    }
+    bfs(startingNode)
+    {
+        var visited = {};
+        var resultado = []
 
-    removeVertex(vertex) {
-      while (this.adjacencyList[vertex]) {
-        const adjacentVertex = this.adjacencyList[vertex].pop();
-        this.removeEdge(vertex, adjacentVertex);
-      }
-      delete this.adjacencyList[vertex];
+        var q = new Queue();
+
+        visited[startingNode] = true;
+        q.enqueue(startingNode);
+
+        while (!q.isEmpty()) {
+            var getQueueElement = q.dequeue();
+
+            //console.log(getQueueElement);
+            resultado.push(getQueueElement)
+
+            var get_List = this.AdjList.get(getQueueElement);
+
+            for (var i in get_List) {
+                var neigh = get_List[i];
+
+                if (!visited[neigh]) {
+                    visited[neigh] = true;
+                    q.enqueue(neigh);
+                }
+            }
+        }
+
+        return resultado;
     }
 }
