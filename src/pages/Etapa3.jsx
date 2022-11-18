@@ -9,6 +9,7 @@ export function Etapa3({membros, listaConexoesMembros}) {
     const [ segundoNome, setSegundoNome ] = useState('')
     const [ toggle, setToggle ] = useState(false)
     const [ resultadoBFS, setResultadoBFS ] = useState([])
+    const [ lista, setLista ] = useState([])
     const [ botao, setBotao ] = useState(true);
     
 
@@ -25,6 +26,11 @@ export function Etapa3({membros, listaConexoesMembros}) {
 
         setResultadoBFS(g.bfs(primeiroNome))
     }
+    
+    useEffect(() => {
+        setLista(resultadoBFS.slice(0, resultadoBFS.indexOf(segundoNome) + 1))
+        console.log(lista);
+    }, [resultadoBFS])
 
     useEffect(() => {
         if((primeiroNome && segundoNome) !== '')
@@ -104,17 +110,17 @@ export function Etapa3({membros, listaConexoesMembros}) {
                     <Grid item xs={3} />
     
                     <Grid item xs={6} sx={{
-                        mt: 2,  
+                        mt: 8,  
                         alignItems: 'center',
                         display: 'flex',
                         justifyContent: 'center'}}
                     >
-                        {resultadoBFS.map((item, index) => {
+                        {lista.map((item, index) => {
                             return (
                                 <>
                                     <Typography>{item}</Typography>
 
-                                    {index < (membros.length - 2) ? 
+                                    {index < (lista.length - 1) ? 
                                         <HandshakeIcon sx={{mr: 2, ml: 2}}/> : 
                                     ''}
                                 </>
