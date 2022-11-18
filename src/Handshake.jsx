@@ -6,8 +6,9 @@ import { Etapa2 } from './pages/Etapa2';
 import { Etapa3 } from './pages/Etapa3';
 
 export function Handshake() {
-    const [pagina, setPagina] = useState(0);
+    const [ pagina, setPagina ] = useState(0);
     const [ membros, setMembros ] = useState([''])
+    const [ listaConexoesMembros, setListaConexoesMembros ] = useState([])
 
     return (
         <>
@@ -22,7 +23,11 @@ export function Handshake() {
                     setMembros={setMembros}
                 /> : 
             pagina == 1 ? 
-                <Etapa2 membros={membros}/> : 
+                <Etapa2 
+                    membros={membros} 
+                    listaConexoesMembros={listaConexoesMembros} 
+                    setListaConexoesMembros={setListaConexoesMembros}
+                /> : 
                 <Etapa3 membros={membros}/>
             }
            

@@ -2,19 +2,18 @@ import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Grid, Typography, MenuItem, Stack } from '@mui/material'
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
-export function Etapa2({membros}) {
+export function Etapa2({membros, listaConexoesMembros, setListaConexoesMembros}) {
     const [ primeiroNome, setPrimeiroNome ] = useState('')
     const [ segundoNome, setSegundoNome ] = useState('')
-    const [ listaMembro, setListaMembro ] = useState([])
     const [ toggle, setToggle ] = useState(false)
 
-    var obj = {}
+    var conexao = {}
 
     function handleClick() {
-        obj.primeiroNome = primeiroNome;
-        obj.segundoNome = segundoNome;
+        conexao.primeiroNome = primeiroNome;
+        conexao.segundoNome = segundoNome;
 
-        setListaMembro([...listaMembro, obj]);
+        setListaConexoesMembros([...listaConexoesMembros, conexao]);
 
         setPrimeiroNome('');
         setSegundoNome('');
@@ -93,7 +92,7 @@ export function Etapa2({membros}) {
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}>
-                            {listaMembro.map((item, index) => {
+                            {listaConexoesMembros.map((item, index) => {
                                 return (
                                     <>
                                         <Stack 
