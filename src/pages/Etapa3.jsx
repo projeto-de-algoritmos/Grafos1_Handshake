@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, TextField, Button, Grid, MenuItem, Typography, Stack } from '@mui/material'
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import Graph from '../utils/graph';
@@ -9,6 +9,7 @@ export function Etapa3({membros, listaConexoesMembros}) {
     const [ segundoNome, setSegundoNome ] = useState('')
     const [ toggle, setToggle ] = useState(false)
     const [ resultadoBFS, setResultadoBFS ] = useState([])
+    const [ botao, setBotao ] = useState(true);
     
 
     function handleBFS() {
@@ -25,6 +26,20 @@ export function Etapa3({membros, listaConexoesMembros}) {
         setResultadoBFS(g.bfs(primeiroNome))
     }
 
+    useEffect(() => {
+        if((primeiroNome && segundoNome) !== '')
+            setBotao(false);
+        else 
+            setBotao(true);
+
+        if((primeiroNome == segundoNome) && (primeiroNome && segundoNome !== '')) {
+            setBotao(true);
+            setToggle(true);
+        }
+        else
+            setToggle(false);
+
+    }, [primeiroNome, segundoNome])
 
     return (
         <>
@@ -76,6 +91,7 @@ export function Etapa3({membros, listaConexoesMembros}) {
                             variant="contained" 
                             onClick={handleBFS}
                             sx={{height: '3.5rem', width: '100%' }}
+                            disabled={botao}
                         >
                             Procurar
                         </Button>

@@ -6,6 +6,7 @@ export function Etapa2({membros, listaConexoesMembros, setListaConexoesMembros})
     const [ primeiroNome, setPrimeiroNome ] = useState('')
     const [ segundoNome, setSegundoNome ] = useState('')
     const [ toggle, setToggle ] = useState(false)
+    const [ botao, setBotao ] = useState(true);
 
     var conexao = {}
 
@@ -20,9 +21,16 @@ export function Etapa2({membros, listaConexoesMembros, setListaConexoesMembros})
     }
 
     useEffect(() => {
-        if((primeiroNome == segundoNome) && (primeiroNome && segundoNome !== ''))
-            setToggle(true);
+        if((primeiroNome && segundoNome) !== '')
+            setBotao(false);
         else 
+            setBotao(true);
+
+        if((primeiroNome == segundoNome) && (primeiroNome && segundoNome !== '')) {
+            setBotao(true);
+            setToggle(true);
+        }
+        else
             setToggle(false);
     }, [primeiroNome, segundoNome])
 
@@ -76,6 +84,7 @@ export function Etapa2({membros, listaConexoesMembros, setListaConexoesMembros})
                                 variant="contained" 
                                 onClick={handleClick}
                                 sx={{height: '3.5rem', width: '100%' }}
+                                disabled={botao}
                             >
                                 Adicionar
                             </Button>
