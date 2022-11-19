@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Tabs, Tab } from '@mui/material'
 
-export function Abas({ pagina, setPagina }) {
+export function StepTabs({ pagina, setPagina }) {
 
   const handleChange = (event, newValue) => {
     setPagina(newValue)
