@@ -11,7 +11,7 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import Graph from '../utils/graph';
 
 
-export function SearchStep({ individuals, conectionsList }) {
+export function SearchStep({ individuals, connectionsList }) {
     const [firstIndividual, setFirstIndividual] = useState('')
     const [secondIndividual, setSecondIndividual] = useState('')
     const [hasError, setHasError] = useState(false)
@@ -27,8 +27,8 @@ export function SearchStep({ individuals, conectionsList }) {
             g.addVertex(individuals[i]);
         }
 
-        for (var i = 0; i < conectionsList.length; i++) {
-            g.addEdge(conectionsList[i].firstIndividual, conectionsList[i].secondIndividual)
+        for (var i = 0; i < connectionsList.length; i++) {
+            g.addEdge(connectionsList[i].firstIndividual, connectionsList[i].secondIndividual)
         }
 
         setResultadoBFS(g.bfs(firstIndividual))

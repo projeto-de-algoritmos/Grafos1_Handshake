@@ -10,7 +10,7 @@ import { SearchStep } from './pages/SearchStep';
 export function Handshake() {
     const [page, setPage] = useState(0);
     const [individuals, setIndividuals] = useState([''])
-    const [conectionsList, setConectionsList] = useState([])
+    const [connectionsList, setConnectionsList] = useState([])
 
 
     return (
@@ -31,14 +31,14 @@ export function Handshake() {
             {page == 1 &&
                 <LinkStep
                     individuals={individuals}
-                    conectionsList={conectionsList}
-                    setConectionsList={setConectionsList}
+                    connectionsList={connectionsList}
+                    setConnectionsList={setConnectionsList}
                 />
             }
             {page == 2 &&
                 <SearchStep
                     individuals={individuals}
-                    conectionsList={conectionsList}
+                    connectionsList={connectionsList}
                 />
             }
         </>

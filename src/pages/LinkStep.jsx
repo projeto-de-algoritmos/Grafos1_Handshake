@@ -10,19 +10,19 @@ import {
 } from '@mui/material'
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
-export function LinkStep({ individuals, conectionsList, setConectionsList }) {
+export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     const [firstIndividual, setFirstIndividual] = useState('')
     const [secondIndividual, setSecondIndividual] = useState('')
     const [hasError, setHasError] = useState(false)
     const [buttonEnabled, setButtonEnabled] = useState(true);
 
-    var conexao = {}
+    var connection = {}
 
     function handleClick() {
-        conexao.firstIndividual = firstIndividual;
-        conexao.secondIndividual = secondIndividual;
+        connection.firstIndividual = firstIndividual;
+        connection.secondIndividual = secondIndividual;
 
-        setConectionsList([...conectionsList, conexao]);
+        setConnectionsList([...connectionsList, connection]);
 
         setFirstIndividual('');
         setSecondIndividual('');
@@ -108,7 +108,7 @@ export function LinkStep({ individuals, conectionsList, setConectionsList }) {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    {conectionsList.map((item, index) => {
+                    {connectionsList.map((item, index) => {
                         return (
                             <>
                                 <Stack
