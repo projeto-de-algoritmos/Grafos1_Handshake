@@ -11,48 +11,48 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import Graph from '../utils/graph';
 
 
-export function SearchStep({ membros, listaConexoesMembros }) {
-    const [primeiroNome, setPrimeiroNome] = useState('')
-    const [segundoNome, setSegundoNome] = useState('')
-    const [toggle, setToggle] = useState(false)
+export function SearchStep({ individuals, conectionsList }) {
+    const [firstIndividual, setFirstIndividual] = useState('')
+    const [secondIndividual, setSecondIndividual] = useState('')
+    const [hasError, setHasError] = useState(false)
     const [resultadoBFS, setResultadoBFS] = useState([])
     const [lista, setLista] = useState([])
-    const [botao, setBotao] = useState(true);
+    const [buttonEnabled, setButtonEnabled] = useState(true);
 
 
     function handleBFS() {
-        const g = new Graph(membros.length);
+        const g = new Graph(individuals.length);
 
-        for (var i = 0; i < membros.length; i++) {
-            g.addVertex(membros[i]);
+        for (var i = 0; i < individuals.length; i++) {
+            g.addVertex(individuals[i]);
         }
 
-        for (var i = 0; i < listaConexoesMembros.length; i++) {
-            g.addEdge(listaConexoesMembros[i].primeiroNome, listaConexoesMembros[i].segundoNome)
+        for (var i = 0; i < conectionsList.length; i++) {
+            g.addEdge(conectionsList[i].firstIndividual, conectionsList[i].secondIndividual)
         }
 
-        setResultadoBFS(g.bfs(primeiroNome))
+        setResultadoBFS(g.bfs(firstIndividual))
     }
 
     useEffect(() => {
-        setLista(resultadoBFS.slice(0, resultadoBFS.indexOf(segundoNome) + 1))
+        setLista(resultadoBFS.slice(0, resultadoBFS.indexOf(secondIndividual) + 1))
         console.log(lista);
     }, [resultadoBFS])
 
     useEffect(() => {
-        if ((primeiroNome && segundoNome) !== '')
-            setBotao(false);
+        if ((firstIndividual && secondIndividual) !== '')
+            setButtonEnabled(false);
         else
-            setBotao(true);
+            setButtonEnabled(true);
 
-        if ((primeiroNome == segundoNome) && (primeiroNome && segundoNome !== '')) {
-            setBotao(true);
-            setToggle(true);
+        if ((firstIndividual == secondIndividual) && (firstIndividual && secondIndividual !== '')) {
+            setButtonEnabled(true);
+            setHasError(true);
         }
         else
-            setToggle(false);
+            setHasError(false);
 
-    }, [primeiroNome, segundoNome])
+    }, [firstIndividual, secondIndividual])
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -66,12 +66,12 @@ export function SearchStep({ membros, listaConexoesMembros }) {
                         id="primeiro-membro"
                         label="Primeiro membro"
                         variant="outlined"
-                        value={primeiroNome}
-                        onChange={(event) => { setPrimeiroNome(event.target.value) }}
-                        error={toggle}
-                        helperText={toggle ? 'Nomes iguais, escolha outro nome' : ''}
+                        value={firstIndividual}
+                        onChange={(event) => { setFirstIndividual(event.target.value) }}
+                        error={hasError}
+                        helperText={hasError ? 'Nome já escolhido, escolha outro nome' : ''}
                     >
-                        {membros.map((item) => (
+                        {individuals.map((item) => (
                             <MenuItem key={item} value={item}>
                                 {item}
                             </MenuItem>
@@ -85,12 +85,12 @@ export function SearchStep({ membros, listaConexoesMembros }) {
                         id="segundo-membro"
                         label="Segundo membro"
                         variant="outlined"
-                        value={segundoNome}
-                        onChange={(event) => { setSegundoNome(event.target.value) }}
-                        error={toggle}
-                        helperText={toggle ? 'Nomes iguais, escolha outro nome' : ''}
+                        value={secondIndividual}
+                        onChange={(event) => { setSecondIndividual(event.target.value) }}
+                        error={hasError}
+                        helperText={hasError ? 'Nome já escolhido, escolha outro nome' : ''}
                     >
-                        {membros.map((item) => (
+                        {individuals.map((item) => (
                             <MenuItem key={item} value={item}>
                                 {item}
                             </MenuItem>
@@ -103,7 +103,7 @@ export function SearchStep({ membros, listaConexoesMembros }) {
                         variant="contained"
                         onClick={handleBFS}
                         sx={{ height: '3.5rem', width: '100%' }}
-                        disabled={botao}
+                        disabled={buttonEnabled}
                     >
                         Procurar
                     </Button>

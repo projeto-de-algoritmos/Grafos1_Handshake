@@ -10,37 +10,37 @@ import {
 } from '@mui/material'
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
-export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembros }) {
-    const [primeiroNome, setPrimeiroNome] = useState('')
-    const [segundoNome, setSegundoNome] = useState('')
-    const [toggle, setToggle] = useState(false)
-    const [botao, setBotao] = useState(true);
+export function LinkStep({ individuals, conectionsList, setConectionsList }) {
+    const [firstIndividual, setFirstIndividual] = useState('')
+    const [secondIndividual, setSecondIndividual] = useState('')
+    const [hasError, setHasError] = useState(false)
+    const [buttonEnabled, setButtonEnabled] = useState(true);
 
     var conexao = {}
 
     function handleClick() {
-        conexao.primeiroNome = primeiroNome;
-        conexao.segundoNome = segundoNome;
+        conexao.firstIndividual = firstIndividual;
+        conexao.secondIndividual = secondIndividual;
 
-        setListaConexoesMembros([...listaConexoesMembros, conexao]);
+        setConectionsList([...conectionsList, conexao]);
 
-        setPrimeiroNome('');
-        setSegundoNome('');
+        setFirstIndividual('');
+        setSecondIndividual('');
     }
 
     useEffect(() => {
-        if ((primeiroNome && segundoNome) !== '')
-            setBotao(false);
+        if ((firstIndividual && secondIndividual) !== '')
+            setButtonEnabled(false);
         else
-            setBotao(true);
+            setButtonEnabled(true);
 
-        if ((primeiroNome == segundoNome) && (primeiroNome && segundoNome !== '')) {
-            setBotao(true);
-            setToggle(true);
+        if ((firstIndividual == secondIndividual) && (firstIndividual && secondIndividual !== '')) {
+            setButtonEnabled(true);
+            setHasError(true);
         }
         else
-            setToggle(false);
-    }, [primeiroNome, segundoNome])
+            setHasError(false);
+    }, [firstIndividual, secondIndividual])
 
     return (
         <Box sx={{ width: '100%' }}>
@@ -54,12 +54,12 @@ export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembro
                         id="primeiro-membro"
                         label="Primeiro membro"
                         variant="outlined"
-                        value={primeiroNome}
-                        onChange={(event) => { setPrimeiroNome(event.target.value) }}
-                        error={toggle}
-                        helperText={toggle ? 'Nomes iguais, escolha outro nome' : ''}
+                        value={firstIndividual}
+                        onChange={(event) => { setFirstIndividual(event.target.value) }}
+                        error={hasError}
+                        helperText={hasError ? 'Nome já escolhido, escolha outro nome' : ''}
                     >
-                        {membros.map((item) => (
+                        {individuals.map((item) => (
                             <MenuItem key={item} value={item}>
                                 {item}
                             </MenuItem>
@@ -73,12 +73,12 @@ export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembro
                         id="segundo-membro"
                         label="Segundo membro"
                         variant="outlined"
-                        value={segundoNome}
-                        onChange={(event) => { setSegundoNome(event.target.value) }}
-                        error={toggle}
-                        helperText={toggle ? 'Nomes iguais, escolha outro nome' : ''}
+                        value={secondIndividual}
+                        onChange={(event) => { setSecondIndividual(event.target.value) }}
+                        error={hasError}
+                        helperText={hasError ? 'Nome já escolhido, escolha outro nome' : ''}
                     >
-                        {membros.map((item) => (
+                        {individuals.map((item) => (
                             <MenuItem key={item} value={item}>
                                 {item}
                             </MenuItem>
@@ -91,7 +91,7 @@ export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembro
                         variant="contained"
                         onClick={handleClick}
                         sx={{ height: '3.5rem', width: '100%' }}
-                        disabled={botao}
+                        disabled={buttonEnabled}
                     >
                         Adicionar
                     </Button>
@@ -108,7 +108,7 @@ export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembro
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    {listaConexoesMembros.map((item, index) => {
+                    {conectionsList.map((item, index) => {
                         return (
                             <>
                                 <Stack
@@ -116,9 +116,9 @@ export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembro
                                     direction="row"
                                     spacing={2}
                                 >
-                                    <Typography>{item.primeiroNome}</Typography>
+                                    <Typography>{item.firstIndividual}</Typography>
                                     <HandshakeIcon />
-                                    <Typography>{item.segundoNome}</Typography>
+                                    <Typography>{item.secondIndividual}</Typography>
                                 </Stack>
                             </>
                         )

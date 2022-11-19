@@ -7,17 +7,17 @@ import {
     Typography
 } from '@mui/material'
 
-export function RegisterStep({ membros, setMembros }) {
+export function RegisterStep({ individuals, setIndividuals }) {
 
     const [nomeMembro, setNomeMembro] = useState('')
-    const [toggle, setToggle] = useState(false);
+    const [hasError, setHasError] = useState(false);
 
     function handleClick() {
-        if (membros.includes(nomeMembro))
-            setToggle(true)
+        if (individuals.includes(nomeMembro))
+            setHasError(true)
         else {
-            setToggle(false);
-            setMembros([...membros, nomeMembro]);
+            setHasError(false);
+            setIndividuals([...individuals, nomeMembro]);
             setNomeMembro('')
         }
 
@@ -37,8 +37,8 @@ export function RegisterStep({ membros, setMembros }) {
                         variant="outlined"
                         value={nomeMembro}
                         onChange={(event) => { setNomeMembro(event.target.value) }}
-                        error={toggle}
-                        helperText={toggle ? 'Nome já existe na lista de membros' : ''}
+                        error={hasError}
+                        helperText={hasError ? 'Nome já existe na lista de individuals' : ''}
                     />
                 </Grid>
 
@@ -63,7 +63,7 @@ export function RegisterStep({ membros, setMembros }) {
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
-                    {membros.map((item, index) => {
+                    {individuals.map((item, index) => {
                         return (<Typography sx={{ textAlign: 'center' }} mt={1.5} key={index}>{item}</Typography>)
                     })}
                 </Grid>

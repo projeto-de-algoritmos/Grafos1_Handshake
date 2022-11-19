@@ -8,37 +8,37 @@ import { SearchStep } from './pages/SearchStep';
 
 
 export function Handshake() {
-    const [pagina, setPagina] = useState(0);
-    const [membros, setMembros] = useState([''])
-    const [listaConexoesMembros, setListaConexoesMembros] = useState([])
+    const [page, setPage] = useState(0);
+    const [individuals, setIndividuals] = useState([''])
+    const [conectionsList, setConectionsList] = useState([])
 
 
     return (
         <>
             <Header />
             <StepTabs
-                pagina={pagina}
-                setPagina={setPagina}
+                page={page}
+                setPage={setPage}
             />
-            <StepMessage page={pagina} />
+            <StepMessage page={page} />
 
-            {pagina == 0 &&
+            {page == 0 &&
                 <RegisterStep
-                    membros={membros}
-                    setMembros={setMembros}
+                    individuals={individuals}
+                    setIndividuals={setIndividuals}
                 />
             }
-            {pagina == 1 &&
+            {page == 1 &&
                 <LinkStep
-                    membros={membros}
-                    listaConexoesMembros={listaConexoesMembros}
-                    setListaConexoesMembros={setListaConexoesMembros}
+                    individuals={individuals}
+                    conectionsList={conectionsList}
+                    setConectionsList={setConectionsList}
                 />
             }
-            {pagina == 2 &&
+            {page == 2 &&
                 <SearchStep
-                    membros={membros}
-                    listaConexoesMembros={listaConexoesMembros}
+                    individuals={individuals}
+                    conectionsList={conectionsList}
                 />
             }
         </>
