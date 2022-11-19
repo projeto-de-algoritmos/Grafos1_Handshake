@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Header } from './components/Header';
 import { Abas } from './components/Abas';
-import { Etapa1 } from './pages/Etapa1';
-import { Etapa2 } from './pages/Etapa2';
-import { Etapa3 } from './pages/Etapa3';
+import { RegisterStep } from './pages/RegisterStep';
+import { LinkStep } from './pages/LinkStep';
+import { SearchStep } from './pages/SearchStep';
 
 
 export function Handshake() {
@@ -20,17 +20,17 @@ export function Handshake() {
                 setPagina={setPagina}
             />
             {pagina == 0 ?
-                <Etapa1
+                <RegisterStep
                     membros={membros}
                     setMembros={setMembros}
                 /> :
                 pagina == 1 ?
-                    <Etapa2
+                    <LinkStep
                         membros={membros}
                         listaConexoesMembros={listaConexoesMembros}
                         setListaConexoesMembros={setListaConexoesMembros}
                     /> :
-                    <Etapa3
+                    <SearchStep
                         membros={membros}
                         listaConexoesMembros={listaConexoesMembros}
                     />

@@ -10,7 +10,7 @@ import {
 } from '@mui/material'
 import HandshakeIcon from '@mui/icons-material/Handshake';
 
-export function Etapa2({ membros, listaConexoesMembros, setListaConexoesMembros }) {
+export function LinkStep({ membros, listaConexoesMembros, setListaConexoesMembros }) {
     const [primeiroNome, setPrimeiroNome] = useState('')
     const [segundoNome, setSegundoNome] = useState('')
     const [toggle, setToggle] = useState(false)

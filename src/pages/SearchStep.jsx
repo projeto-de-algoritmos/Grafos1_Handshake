@@ -11,7 +11,7 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import Graph from '../utils/graph';
 
 
-export function Etapa3({ membros, listaConexoesMembros }) {
+export function SearchStep({ membros, listaConexoesMembros }) {
     const [primeiroNome, setPrimeiroNome] = useState('')
     const [segundoNome, setSegundoNome] = useState('')
     const [toggle, setToggle] = useState(false)

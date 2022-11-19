@@ -7,7 +7,7 @@ import {
     Typography
 } from '@mui/material'
 
-export function Etapa1({ membros, setMembros }) {
+export function RegisterStep({ membros, setMembros }) {
 
     const [nomeMembro, setNomeMembro] = useState('')
     const [toggle, setToggle] = useState(false);
