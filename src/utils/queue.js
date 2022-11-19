@@ -1,25 +1,19 @@
-
-export default class Queue
-{
-	constructor()
-	{
-		this.items = [];
-	}
-    
-    enqueue(element)
-    {	
-    	this.items.push(element);
+export default class Queue {
+    constructor() {
+        this.items = [];
     }
 
-    dequeue()
-    {
-        if(this.isEmpty())
+    enqueue(element) {
+        this.items.push(element);
+    }
+
+    dequeue() {
+        if (this.isEmpty())
             return "Underflow";
         return this.items.shift();
     }
 
-    isEmpty()
-    {
+    isEmpty() {
         return this.items.length == 0;
     }
 }

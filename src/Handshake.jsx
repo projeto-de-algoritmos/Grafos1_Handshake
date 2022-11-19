@@ -7,35 +7,35 @@ import { Etapa3 } from './pages/Etapa3';
 
 
 export function Handshake() {
-    const [ pagina, setPagina ] = useState(0);
-    const [ membros, setMembros ] = useState([''])
-    const [ listaConexoesMembros, setListaConexoesMembros ] = useState([])
+    const [pagina, setPagina] = useState(0);
+    const [membros, setMembros] = useState([''])
+    const [listaConexoesMembros, setListaConexoesMembros] = useState([])
 
-    
+
     return (
         <>
             <Header />
-            <Abas 
-                pagina={pagina} 
+            <Abas
+                pagina={pagina}
                 setPagina={setPagina}
             />
-            {pagina == 0 ?  
-                <Etapa1 
+            {pagina == 0 ?
+                <Etapa1
                     membros={membros}
                     setMembros={setMembros}
-                /> : 
-            pagina == 1 ? 
-                <Etapa2 
-                    membros={membros} 
-                    listaConexoesMembros={listaConexoesMembros} 
-                    setListaConexoesMembros={setListaConexoesMembros}
-                /> : 
-                <Etapa3 
-                    membros={membros}
-                    listaConexoesMembros={listaConexoesMembros}
-                />
+                /> :
+                pagina == 1 ?
+                    <Etapa2
+                        membros={membros}
+                        listaConexoesMembros={listaConexoesMembros}
+                        setListaConexoesMembros={setListaConexoesMembros}
+                    /> :
+                    <Etapa3
+                        membros={membros}
+                        listaConexoesMembros={listaConexoesMembros}
+                    />
             }
-           
+
         </>
     )
 }
