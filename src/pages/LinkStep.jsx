@@ -110,17 +110,16 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
                 }}>
                     {connectionsList.map((item, index) => {
                         return (
-                            <>
-                                <Stack
-                                    sx={{ mt: 2, justifyContent: 'space-evenly', alignItems: 'center' }}
-                                    direction="row"
-                                    spacing={2}
-                                >
-                                    <Typography>{item.firstIndividual}</Typography>
-                                    <HandshakeIcon />
-                                    <Typography>{item.secondIndividual}</Typography>
-                                </Stack>
-                            </>
+                            <Stack
+                                sx={{ mt: 2, justifyContent: 'space-evenly', alignItems: 'center' }}
+                                direction="row"
+                                spacing={2}
+                                key={index}
+                            >
+                                <Typography>{item.firstIndividual}</Typography>
+                                <HandshakeIcon />
+                                <Typography>{item.secondIndividual}</Typography>
+                            </Stack>
                         )
                     })}
                 </Grid>

@@ -15,29 +15,23 @@ export function SearchStep({ individuals, connectionsList }) {
     const [firstIndividual, setFirstIndividual] = useState('')
     const [secondIndividual, setSecondIndividual] = useState('')
     const [hasError, setHasError] = useState(false)
-    const [resultadoBFS, setResultadoBFS] = useState([])
     const [list, setList] = useState([])
     const [buttonEnabled, setButtonEnabled] = useState(true);
 
 
     function handleBFS() {
-        const g = new Graph(individuals.length);
+        const graph = new Graph(individuals.length);
 
         for (var i = 0; i < individuals.length; i++) {
-            g.addVertex(individuals[i]);
+            graph.addVertex(individuals[i]);
         }
 
         for (var i = 0; i < connectionsList.length; i++) {
-            g.addEdge(connectionsList[i].firstIndividual, connectionsList[i].secondIndividual)
+            graph.addEdge(connectionsList[i].firstIndividual, connectionsList[i].secondIndividual)
         }
 
-        setResultadoBFS(g.bfs(firstIndividual))
+        setList(graph.bfs(firstIndividual, secondIndividual))
     }
-
-    useEffect(() => {
-        setList(resultadoBFS.slice(0, resultadoBFS.indexOf(secondIndividual) + 1))
-        console.log(list);
-    }, [resultadoBFS])
 
     useEffect(() => {
         if ((firstIndividual && secondIndividual) !== '')
@@ -125,7 +119,7 @@ export function SearchStep({ individuals, connectionsList }) {
                     {list.map((item, index) => {
                         return (
                             <>
-                                <Typography>{item}</Typography>
+                                <Typography key={index}>{item}</Typography>
 
                                 {index < (list.length - 1) && <HandshakeIcon sx={{ mr: 2, ml: 2 }} />}
                             </>
@@ -147,4 +141,4 @@ export function SearchStep({ individuals, connectionsList }) {
 // - CLICK DE BOTAO NO ENTER []
 // - data setter automatico []
 // - limpar dados sem F5 []
-// - implementar parada no algoritmo?? []
+// - implementar parada no algoritmo?? [X]

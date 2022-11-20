@@ -47,6 +47,7 @@ export function RegisterStep({ individuals, setIndividuals }) {
                         variant="contained"
                         onClick={handleClick}
                         sx={{ height: '3.5rem', width: '100%' }}
+                        disabled={!nomeMembro}
                     >
                         Adicionar
                     </Button>

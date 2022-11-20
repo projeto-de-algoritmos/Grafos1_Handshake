@@ -30,7 +30,7 @@ export default class Graph {
         })
     }
 
-    bfs(startingNode) {
+    bfs(startingNode, finalNode) {
         let visited = {};
         let searchResult = []
 
@@ -39,14 +39,14 @@ export default class Graph {
         visited[startingNode] = true;
         queue.enQueue(startingNode);
 
-        while (!queue.isEmpty()) {
+        while (!queue.isEmpty() && searchResult[searchResult.length - 1] != finalNode) {
             let firstQueueElement = queue.deQueue();
 
             searchResult.push(firstQueueElement)
 
             const neighbors = this.AdjList.get(firstQueueElement);
 
-            neighbors.forEach(neighbor => {
+            neighbors?.forEach(neighbor => {
                 if (!visited[neighbor]) {
                     visited[neighbor] = true;
                     queue.enQueue(neighbor);
