@@ -16,7 +16,7 @@ export function SearchStep({ individuals, connectionsList }) {
     const [secondIndividual, setSecondIndividual] = useState('')
     const [hasError, setHasError] = useState(false)
     const [resultadoBFS, setResultadoBFS] = useState([])
-    const [lista, setLista] = useState([])
+    const [list, setList] = useState([])
     const [buttonEnabled, setButtonEnabled] = useState(true);
 
 
@@ -35,8 +35,8 @@ export function SearchStep({ individuals, connectionsList }) {
     }
 
     useEffect(() => {
-        setLista(resultadoBFS.slice(0, resultadoBFS.indexOf(secondIndividual) + 1))
-        console.log(lista);
+        setList(resultadoBFS.slice(0, resultadoBFS.indexOf(secondIndividual) + 1))
+        console.log(list);
     }, [resultadoBFS])
 
     useEffect(() => {
@@ -122,14 +122,12 @@ export function SearchStep({ individuals, connectionsList }) {
                     justifyContent: 'center'
                 }}
                 >
-                    {lista.map((item, index) => {
+                    {list.map((item, index) => {
                         return (
                             <>
                                 <Typography>{item}</Typography>
 
-                                {index < (lista.length - 1) ?
-                                    <HandshakeIcon sx={{ mr: 2, ml: 2 }} /> :
-                                    ''}
+                                {index < (list.length - 1) && <HandshakeIcon sx={{ mr: 2, ml: 2 }} />}
                             </>
                         )
                     })}
@@ -142,12 +140,11 @@ export function SearchStep({ individuals, connectionsList }) {
 }
 
 
-// - refatoração de nomenclaturas
-// - code smells
-// - adicionar descrições/instruções
-// - tornar utils funcional
-// - CLICK DE BOTAO NO ENTER
-// - data setter automatico
-// - limpar dados sem F5
-// - implementar parada no algoritmo??
-// - refatorar o algoritmo se viavel (list, struct?)
+// - refatoração de nomenclaturas [X]
+// - code smells []
+// - adicionar descrições/instruções [X]
+// - tornar utils funcional [x]
+// - CLICK DE BOTAO NO ENTER []
+// - data setter automatico []
+// - limpar dados sem F5 []
+// - implementar parada no algoritmo?? []

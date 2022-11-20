@@ -16,46 +16,44 @@ export default class Graph {
     }
 
     printGraph() {
-        var get_keys = this.AdjList.keys();
+        const headNodes = this.AdjList.keys();
 
-        for (var i of get_keys) {
-            var get_values = this.AdjList.get(i);
-            var conc = "";
+        headNodes.forEach(head => {
+            const adjNodes = this.AdjList.get(head);
+            let conc = "";
 
-            for (var j of get_values)
-                conc += j + " ";
+            adjNodes.forEach(node => {
+                conc += node + " ";
+            })
 
-            console.log(i + " -> " + conc);
-        }
+            console.log(head + " -> " + conc);
+        })
     }
 
     bfs(startingNode) {
-        var visited = {};
-        var resultado = []
+        let visited = {};
+        let searchResult = []
 
-        var q = new Queue();
+        const queue = new Queue();
 
         visited[startingNode] = true;
-        q.enqueue(startingNode);
+        queue.enQueue(startingNode);
 
-        while (!q.isEmpty()) {
-            var getQueueElement = q.dequeue();
+        while (!queue.isEmpty()) {
+            let firstQueueElement = queue.deQueue();
 
-            //console.log(getQueueElement);
-            resultado.push(getQueueElement)
+            searchResult.push(firstQueueElement)
 
-            var get_List = this.AdjList.get(getQueueElement);
+            const neighbors = this.AdjList.get(firstQueueElement);
 
-            for (var i in get_List) {
-                var neigh = get_List[i];
-
-                if (!visited[neigh]) {
-                    visited[neigh] = true;
-                    q.enqueue(neigh);
+            neighbors.forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.enQueue(neighbor);
                 }
-            }
+            })
         }
 
-        return resultado;
+        return searchResult;
     }
 }

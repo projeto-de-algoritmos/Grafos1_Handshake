@@ -3,11 +3,11 @@ export default class Queue {
         this.items = [];
     }
 
-    enqueue(element) {
+    enQueue(element) {
         this.items.push(element);
     }
 
-    dequeue() {
+    deQueue() {
         if (this.isEmpty())
             return "Underflow";
         return this.items.shift();
