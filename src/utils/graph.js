@@ -1,68 +1,59 @@
 import Queue from './queue';
 
-export default class Graph 
-{
-	constructor(noOfVertices)
-	{
-		this.noOfVertices = noOfVertices;
-		this.AdjList = new Map();
-	}
+export default class Graph {
+    constructor(noOfVertices) {
+        this.noOfVertices = noOfVertices;
+        this.AdjList = new Map();
+    }
 
-    addVertex(v)
-    {
+    addVertex(v) {
         this.AdjList.set(v, []);
     }
 
-    addEdge(v, w)
-    {
+    addEdge(v, w) {
         this.AdjList.get(v).push(w);
         this.AdjList.get(w).push(v);
     }
 
-    printGraph()
-    {
-        var get_keys = this.AdjList.keys();
+    printGraph() {
+        const headNodes = this.AdjList.keys();
 
-        for (var i of get_keys)
-        {
-            var get_values = this.AdjList.get(i);
-            var conc = "";
+        headNodes.forEach(head => {
+            const adjNodes = this.AdjList.get(head);
+            let conc = "";
 
-            for (var j of get_values)
-                conc += j + " ";
+            adjNodes.forEach(node => {
+                conc += node + " ";
+            })
 
-            console.log(i + " -> " + conc);
-        }
+            console.log(head + " -> " + conc);
+        })
     }
 
-    bfs(startingNode)
-    {
-        var visited = {};
-        var resultado = []
+    bfs(startingNode, finalNode) {
+        let visited = {};
+        let searchResult = []
 
-        var q = new Queue();
+        const queue = new Queue();
 
         visited[startingNode] = true;
-        q.enqueue(startingNode);
+        queue.enQueue(startingNode);
 
-        while (!q.isEmpty()) {
-            var getQueueElement = q.dequeue();
+        while (!queue.isEmpty() && searchResult[searchResult.length - 1] != finalNode) {
+            let firstQueueElement = queue.deQueue();
 
-            //console.log(getQueueElement);
-            resultado.push(getQueueElement)
+            searchResult.push(firstQueueElement)
 
-            var get_List = this.AdjList.get(getQueueElement);
+            const neighbors = this.AdjList.get(firstQueueElement);
 
-            for (var i in get_List) {
-                var neigh = get_List[i];
-
-                if (!visited[neigh]) {
-                    visited[neigh] = true;
-                    q.enqueue(neigh);
+            neighbors?.forEach(neighbor => {
+                if (!visited[neighbor]) {
+                    visited[neighbor] = true;
+                    queue.enQueue(neighbor);
                 }
-            }
+            })
         }
 
-        return resultado;
+        return searchResult;
     }
 }
