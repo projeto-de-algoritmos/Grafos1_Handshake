@@ -34,18 +34,24 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
         let randConnections = [];
 
         for (let i = 0; i < connectionsNum; i++) {
-            let connection = {}
-            connection.firstIndividual = individuals[Math.floor(Math.random() * individuals.length)];
-            console.log(connection.firstIndividual);
-            connection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
-            console.log(connection.secondIndividual);
+            let newConnection = {}
+            let reverseConnection = false
+
+            newConnection.firstIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+            console.log(newConnection.firstIndividual);
+            newConnection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+            console.log(newConnection.secondIndividual);
 
 
-            while (connection.firstIndividual == connection.secondIndividual) {
-                connection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+            while (newConnection.firstIndividual == newConnection.secondIndividual || reverseConnection) {
+                newConnection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+
+                reverseConnection = connectionsList.find(connection => 
+                    connection.firstIndividual == newConnection.secondIndividual && 
+                    connection.secondIndividual == newConnection.firstIndividual)
             }
 
-            randConnections.push(connection);
+            randConnections.push(newConnection);
         }
 
         setConnectionsList([...randConnections]);
