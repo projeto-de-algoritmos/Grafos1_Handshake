@@ -9,6 +9,7 @@ import {
     Stack
 } from '@mui/material'
 import HandshakeIcon from '@mui/icons-material/Handshake';
+import { getRandomInt } from '../utils/randNames';
 
 export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     const [firstIndividual, setFirstIndividual] = useState('')
@@ -16,13 +17,39 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     const [hasError, setHasError] = useState(false)
     const [buttonEnabled, setButtonEnabled] = useState(true);
 
-    var connection = {}
-
+    
     function handleClick() {
+        let connection = {}
         connection.firstIndividual = firstIndividual;
         connection.secondIndividual = secondIndividual;
 
         setConnectionsList([...connectionsList, connection]);
+
+        setFirstIndividual('');
+        setSecondIndividual('');
+    }
+
+    function setRandomConnections() {
+        const connectionsNum = getRandomInt(individuals);
+        let randConnections = [];
+        
+        for (let i = 0; i < connectionsNum; i++) {
+            let connection = {}
+            connection.firstIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+            console.log(connection.firstIndividual);
+            connection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+            console.log(connection.secondIndividual);
+
+
+            while (connection.firstIndividual == connection.secondIndividual) {
+                connection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
+            }
+
+            randConnections.push(connection);
+        }
+        
+        setConnectionsList([...randConnections]);
+        console.log('saiu do loop');
 
         setFirstIndividual('');
         setSecondIndividual('');
@@ -45,7 +72,7 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     return (
         <Box sx={{ width: '100%' }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={3} />
+                <Grid item xs={2} />
 
                 <Grid item xs={2}>
                     <TextField
@@ -97,6 +124,16 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
                     </Button>
                 </Grid>
 
+                <Grid item xs={2}>
+                    <Button
+                        variant="contained"
+                        onClick={setRandomConnections}
+                        sx={{ height: '3.5rem', width: '100%' }}
+                    >
+                        Gerar Conexões Aleatórias
+                    </Button>
+                </Grid>
+
                 <Grid item xs={3} />
             </Grid>
 
@@ -104,7 +141,7 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
                 <Grid item xs={3} />
 
                 <Grid item xs={4} sx={{
-                    mt: 2,
+                    my: 2,
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>

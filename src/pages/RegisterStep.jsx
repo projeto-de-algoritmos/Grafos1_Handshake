@@ -6,27 +6,34 @@ import {
     Grid,
     Typography
 } from '@mui/material'
+import { generateNameList } from '../utils/randNames';
 
 export function RegisterStep({ individuals, setIndividuals }) {
 
-    const [nomeMembro, setNomeMembro] = useState('')
+    const [newIndividual, setNewIndividual] = useState('')
     const [hasError, setHasError] = useState(false);
 
     function handleClick() {
-        if (individuals.includes(nomeMembro))
+        if (individuals.includes(newIndividual))
             setHasError(true)
         else {
             setHasError(false);
-            setIndividuals([...individuals, nomeMembro]);
-            setNomeMembro('')
+            setIndividuals([...individuals, newIndividual]);
+            setNewIndividual('')
         }
 
+    }
+
+    function setRandomList() {
+        const randList = generateNameList();
+        setIndividuals([...randList]);
+        console.log(individuals);
     }
 
     return (
         <Box sx={{ width: '100%' }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={3} />
+                <Grid item xs={2} />
 
                 <Grid item xs={4}>
                     <TextField
@@ -35,8 +42,8 @@ export function RegisterStep({ individuals, setIndividuals }) {
                         autoComplete='off'
                         label="Membro"
                         variant="outlined"
-                        value={nomeMembro}
-                        onChange={(event) => { setNomeMembro(event.target.value) }}
+                        value={newIndividual}
+                        onChange={(event) => { setNewIndividual(event.target.value) }}
                         error={hasError}
                         helperText={hasError ? 'Nome já existe na lista de individuals' : ''}
                     />
@@ -47,9 +54,19 @@ export function RegisterStep({ individuals, setIndividuals }) {
                         variant="contained"
                         onClick={handleClick}
                         sx={{ height: '3.5rem', width: '100%' }}
-                        disabled={!nomeMembro}
+                        disabled={!newIndividual}
                     >
                         Adicionar
+                    </Button>
+                </Grid>
+
+                <Grid item xs={2}>
+                    <Button
+                        variant="contained"
+                        onClick={setRandomList}
+                        sx={{ height: '3.5rem', width: '100%' }}
+                    >
+                        Gerar Lista Aleatória
                     </Button>
                 </Grid>
 
@@ -60,7 +77,7 @@ export function RegisterStep({ individuals, setIndividuals }) {
                 <Grid item xs={3} />
 
                 <Grid item xs={4} sx={{
-                    mt: 2,
+                    my: 2,
                     justifyContent: 'center',
                     alignItems: 'center'
                 }}>
