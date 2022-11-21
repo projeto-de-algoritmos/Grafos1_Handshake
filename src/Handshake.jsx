@@ -19,6 +19,8 @@ export function Handshake() {
             <StepTabs
                 page={page}
                 setPage={setPage}
+                individuals={individuals}
+                connectionsList={connectionsList}
             />
             <StepMessage page={page} />
 

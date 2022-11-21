@@ -17,7 +17,7 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     const [hasError, setHasError] = useState(false)
     const [buttonEnabled, setButtonEnabled] = useState(true);
 
-    
+
     function handleClick() {
         let connection = {}
         connection.firstIndividual = firstIndividual;
@@ -32,7 +32,7 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     function setRandomConnections() {
         const connectionsNum = getRandomInt(individuals);
         let randConnections = [];
-        
+
         for (let i = 0; i < connectionsNum; i++) {
             let connection = {}
             connection.firstIndividual = individuals[Math.floor(Math.random() * individuals.length)];
@@ -47,12 +47,17 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
 
             randConnections.push(connection);
         }
-        
+
         setConnectionsList([...randConnections]);
         console.log('saiu do loop');
 
         setFirstIndividual('');
         setSecondIndividual('');
+    }
+
+    function cleanList() {
+        if (connectionsList.length)
+            setConnectionsList([])
     }
 
     useEffect(() => {
@@ -134,7 +139,16 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
                     </Button>
                 </Grid>
 
-                <Grid item xs={3} />
+                <Grid item xs={1}>
+                    <Button
+                        variant="contained"
+                        onClick={cleanList}
+                        sx={{ height: '3.5rem', width: '100%' }}
+                        disabled={!connectionsList.length}
+                    >
+                        Limpar
+                    </Button>
+                </Grid>
             </Grid>
 
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>

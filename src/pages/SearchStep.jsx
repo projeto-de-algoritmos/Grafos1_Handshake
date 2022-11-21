@@ -139,6 +139,6 @@ export function SearchStep({ individuals, connectionsList }) {
 // - adicionar descrições/instruções [X]
 // - tornar utils funcional [x]
 // - CLICK DE BOTAO NO ENTER []
-// - data setter automatico []
-// - limpar dados sem F5 []
+// - data setter automatico [X]
+// - limpar dados sem F5 [X]
 // - implementar parada no algoritmo?? [X]

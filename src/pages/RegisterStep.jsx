@@ -30,12 +30,17 @@ export function RegisterStep({ individuals, setIndividuals }) {
         console.log(individuals);
     }
 
+    function cleanList() {
+        if (individuals.length)
+            setIndividuals([])
+    }
+
     return (
         <Box sx={{ width: '100%' }}>
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
                 <Grid item xs={2} />
 
-                <Grid item xs={4}>
+                <Grid item xs={3}>
                     <TextField
                         fullWidth
                         id="nome-membro"
@@ -67,6 +72,17 @@ export function RegisterStep({ individuals, setIndividuals }) {
                         sx={{ height: '3.5rem', width: '100%' }}
                     >
                         Gerar Lista Aleatória
+                    </Button>
+                </Grid>
+
+                <Grid item xs={1}>
+                    <Button
+                        variant="contained"
+                        onClick={cleanList}
+                        sx={{ height: '3.5rem', width: '100%' }}
+                        disabled={!individuals.length}
+                    >
+                        Limpar
                     </Button>
                 </Grid>
 
