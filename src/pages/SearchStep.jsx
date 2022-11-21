@@ -11,13 +11,17 @@ import HandshakeIcon from '@mui/icons-material/Handshake';
 import Graph from '../utils/graph';
 
 
-export function SearchStep({ individuals, connectionsList }) {
+export function SearchStep({
+    individuals,
+    connectionsList,
+    searchList,
+    setSearchList
+}) {
     const [firstIndividual, setFirstIndividual] = useState('')
     const [secondIndividual, setSecondIndividual] = useState('')
     const [hasError, setHasError] = useState(false)
-    const [list, setList] = useState([])
     const [buttonEnabled, setButtonEnabled] = useState(true);
-
+    const [notConnected, setNotConnected] = useState(false)
 
     function handleBFS() {
         const graph = new Graph(individuals.length);
@@ -27,11 +31,18 @@ export function SearchStep({ individuals, connectionsList }) {
         }
 
         for (var i = 0; i < connectionsList.length; i++) {
-            graph.addEdge(connectionsList[i].firstIndividual, connectionsList[i].secondIndividual)
+            graph.addEdge(connectionsList[i].firstIndividual, connectionsList[i].secondIndividual);
         }
 
-        setList(graph.bfs(firstIndividual, secondIndividual))
+        setSearchList(graph.bfs(firstIndividual, secondIndividual));
     }
+
+    useEffect(() => {
+        if (firstIndividual && secondIndividual) {
+            if (searchList[searchList.length - 1] != secondIndividual) setNotConnected(true)
+            else setNotConnected(false)
+        }
+    }, [searchList])
 
     useEffect(() => {
         if ((firstIndividual && secondIndividual) !== '')
@@ -116,15 +127,21 @@ export function SearchStep({ individuals, connectionsList }) {
                     justifyContent: 'center'
                 }}
                 >
-                    {list.map((item, index) => {
-                        return (
-                            <>
-                                <Typography key={index}>{item}</Typography>
+                    {
+                        notConnected ?
+                            'Não existem conexões diretas ou indiretas entre esses indivíduos' :
+                            (
+                                searchList.map((item, index) => {
+                                    return (
+                                        <>
+                                            <Typography key={'name-' + index}>{item}</Typography>
 
-                                {index < (list.length - 1) && <HandshakeIcon sx={{ mr: 2, ml: 2 }} />}
-                            </>
-                        )
-                    })}
+                                            {index < (searchList.length - 1) && <HandshakeIcon key={'icon-' + index} sx={{ mr: 2, ml: 2 }} />}
+                                        </>
+                                    )
+                                })
+                            )
+                    }
                 </Grid>
 
                 <Grid item xs={3} />
