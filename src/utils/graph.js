@@ -1,8 +1,7 @@
 import Queue from './queue';
 
 export default class Graph {
-    constructor(noOfVertices) {
-        this.noOfVertices = noOfVertices;
+    constructor() {
         this.AdjList = new Map();
     }
 

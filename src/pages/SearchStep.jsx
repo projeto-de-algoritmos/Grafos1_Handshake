@@ -25,7 +25,7 @@ export function SearchStep({
     const [notConnected, setNotConnected] = useState(false)
 
     function handleBFS() {
-        const graph = new Graph(individuals.length);
+        const graph = new Graph();
 
         for (var i = 0; i < individuals.length; i++) {
             graph.addVertex(individuals[i]);
