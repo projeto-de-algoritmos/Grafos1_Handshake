@@ -9,7 +9,7 @@ import { SearchStep } from './pages/SearchStep';
 
 export function Handshake() {
     const [page, setPage] = useState(0);
-    const [individuals, setIndividuals] = useState(['']);
+    const [individuals, setIndividuals] = useState([]);
     const [connectionsList, setConnectionsList] = useState([]);
     const [searchList, setSearchList] = useState([]);
 

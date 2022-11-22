@@ -4,9 +4,12 @@ import {
     TextField,
     Button,
     Grid,
-    Typography
+    Typography,
+    Tooltip 
 } from '@mui/material'
 import { generateNameList } from '../utils/randNames';
+import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
+
 
 export function RegisterStep({ individuals, setIndividuals }) {
 
@@ -27,7 +30,6 @@ export function RegisterStep({ individuals, setIndividuals }) {
     function setRandomList() {
         const randList = generateNameList();
         setIndividuals([...randList]);
-        console.log(individuals);
     }
 
     function cleanList() {
@@ -65,14 +67,16 @@ export function RegisterStep({ individuals, setIndividuals }) {
                     </Button>
                 </Grid>
 
-                <Grid item xs={2}>
-                    <Button
-                        variant="contained"
-                        onClick={setRandomList}
-                        sx={{ height: '3.5rem', width: '100%' }}
-                    >
-                        Gerar Lista Aleatória
-                    </Button>
+                <Grid item xs={1}>
+                    <Tooltip title="Gerar lista aleatória">
+                        <Button
+                            variant="contained"
+                            onClick={setRandomList}
+                            sx={{ height: '3.5rem', width: '100%' }}
+                        >
+                            <AppRegistrationIcon />
+                        </Button>
+                    </Tooltip>
                 </Grid>
 
                 <Grid item xs={1}>

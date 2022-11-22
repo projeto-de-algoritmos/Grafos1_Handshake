@@ -15,7 +15,7 @@ export function StepMessage({ page }) {
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
-            my: '1rem'
+            my: '2.5rem'
         }}>
             <Typography sx={{
                 fontFamily: 'Roboto',
