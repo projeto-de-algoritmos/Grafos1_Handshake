@@ -9,6 +9,15 @@
 | 18/0041592  |  Denys Rógeres |
 | 19/0109963  |  João Victor Batista |
 
+## Video de Apresentação
+Pode ser encontrado pelo
+[Link Drive](https://drive.google.com/file/d/1fANQVUZmKnfT5CXJG190nENJ3vjK8Whd/view?usp=sharing)
+ou na pasta assets do projeto.
+
+## Deploy
+[handshake-gold.vercel.app](https://handshake-gold.vercel.app/)
+
+
 ## Sobre 
 Ao longo de suas vidas, é comum que pessoas cumprimentem umas as outras e uma das formas mais comuns é através de um aperto de mão ou *handshake*. Consideremos então 3 indivíduos:
 
