@@ -1,6 +1,6 @@
 # Handshake
 
-**Número da Lista**: Não se aplica<br>
+**Número da Lista**: 18<br>
 **Conteúdo da Disciplina**: Grafos 1<br>
 
 ## Alunos
@@ -18,7 +18,7 @@ Ao longo de suas vidas, é comum que pessoas cumprimentem umas as outras e uma d
 
 Se João apertou mão de Miguel e Miguel apertou a mão de Pedro, podemos considerar que agora existe uma conexão indireta entre João e Pedro.
 
-O objetivo do projeto consiste verficar se existe alguma conexão, direta ou indireta, entre 2 indivíduos selecionados e ecnontrar o caminho dessas conexões.
+O objetivo do projeto consiste verficar se existe alguma conexão, direta ou indireta, entre 2 indivíduos selecionados e encontrar o caminho dessas conexões.
 
 ## Screenshots
 ![Etapa1](./src/assets/screenshots/RegisterStepScreenshot.png)
