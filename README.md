@@ -1,6 +1,6 @@
 # Handshake
 
-**Número da Lista**: Não se aplica<br>
+**Número da Lista**: 18<br>
 **Conteúdo da Disciplina**: Grafos 1<br>
 
 ## Alunos

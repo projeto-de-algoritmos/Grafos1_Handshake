@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import SwipeRightIcon from '@mui/icons-material/SwipeRight';
+import Graph from '../utils/graph';
 import {
     Box,
     TextField,
@@ -7,8 +9,7 @@ import {
     MenuItem,
     Typography
 } from '@mui/material'
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import Graph from '../utils/graph';
+
 
 
 export function SearchStep({
@@ -24,7 +25,7 @@ export function SearchStep({
     const [notConnected, setNotConnected] = useState(false)
 
     function handleBFS() {
-        const graph = new Graph(individuals.length);
+        const graph = new Graph();
 
         for (var i = 0; i < individuals.length; i++) {
             graph.addVertex(individuals[i]);
@@ -136,7 +137,7 @@ export function SearchStep({
                                         <>
                                             <Typography key={'name-' + index}>{item}</Typography>
 
-                                            {index < (searchList.length - 1) && <HandshakeIcon key={'icon-' + index} sx={{ mr: 2, ml: 2 }} />}
+                                            {index < (searchList.length - 1) && <SwipeRightIcon key={'icon-' + index} sx={{ mr: 2, ml: 2 }} />}
                                         </>
                                     )
                                 })
@@ -149,13 +150,3 @@ export function SearchStep({
         </Box>
     )
 }
-
-
-// - refatoração de nomenclaturas [X]
-// - code smells []
-// - adicionar descrições/instruções [X]
-// - tornar utils funcional [x]
-// - CLICK DE BOTAO NO ENTER []
-// - data setter automatico [X]
-// - limpar dados sem F5 [X]
-// - implementar parada no algoritmo?? [X]

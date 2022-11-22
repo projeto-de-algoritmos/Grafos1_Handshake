@@ -6,17 +6,18 @@ import {
     Grid,
     Typography,
     MenuItem,
-    Stack
+    Stack,
+    Tooltip
 } from '@mui/material'
-import HandshakeIcon from '@mui/icons-material/Handshake';
 import { getRandomInt } from '../utils/randNames';
+import HandshakeIcon from '@mui/icons-material/Handshake';
+import ConnectWithoutContactIcon from '@mui/icons-material/ConnectWithoutContact';
 
 export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     const [firstIndividual, setFirstIndividual] = useState('')
     const [secondIndividual, setSecondIndividual] = useState('')
     const [hasError, setHasError] = useState(false)
     const [buttonEnabled, setButtonEnabled] = useState(true);
-
 
     function handleClick() {
         let connection = {}
@@ -30,6 +31,7 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
     }
 
     function setRandomConnections() {
+     
         const connectionsNum = getRandomInt(individuals);
         let randConnections = [];
 
@@ -38,11 +40,9 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
             let reverseConnection = false
 
             newConnection.firstIndividual = individuals[Math.floor(Math.random() * individuals.length)];
-            console.log(newConnection.firstIndividual);
             newConnection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
-            console.log(newConnection.secondIndividual);
 
-
+            
             while (newConnection.firstIndividual == newConnection.secondIndividual || reverseConnection) {
                 newConnection.secondIndividual = individuals[Math.floor(Math.random() * individuals.length)];
 
@@ -135,14 +135,16 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
                     </Button>
                 </Grid>
 
-                <Grid item xs={2}>
-                    <Button
-                        variant="contained"
-                        onClick={setRandomConnections}
-                        sx={{ height: '3.5rem', width: '100%' }}
-                    >
-                        Gerar Conexões Aleatórias
-                    </Button>
+                <Grid item xs={1}>
+                    <Tooltip title="Gerar conexões aleatórias">
+                        <Button
+                            variant="contained"
+                            onClick={setRandomConnections}
+                            sx={{ height: '3.5rem', width: '100%' }}
+                        >
+                            <ConnectWithoutContactIcon />
+                        </Button>
+                    </Tooltip>
                 </Grid>
 
                 <Grid item xs={1}>
@@ -155,6 +157,8 @@ export function LinkStep({ individuals, connectionsList, setConnectionsList }) {
                         Limpar
                     </Button>
                 </Grid>
+
+                <Grid item xs={2} />
             </Grid>
 
             <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>

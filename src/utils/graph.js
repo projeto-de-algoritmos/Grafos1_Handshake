@@ -1,8 +1,7 @@
 import Queue from './queue';
 
 export default class Graph {
-    constructor(noOfVertices) {
-        this.noOfVertices = noOfVertices;
+    constructor() {
         this.AdjList = new Map();
     }
 
@@ -13,21 +12,6 @@ export default class Graph {
     addEdge(v, w) {
         this.AdjList.get(v).push(w);
         this.AdjList.get(w).push(v);
-    }
-
-    printGraph() {
-        const headNodes = this.AdjList.keys();
-
-        headNodes.forEach(head => {
-            const adjNodes = this.AdjList.get(head);
-            let conc = "";
-
-            adjNodes.forEach(node => {
-                conc += node + " ";
-            })
-
-            console.log(head + " -> " + conc);
-        })
     }
 
     bfs(startingNode, finalNode) {
