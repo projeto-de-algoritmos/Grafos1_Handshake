@@ -42,13 +42,33 @@ O objetivo do projeto consiste verficar se existe alguma conexão, direta ou ind
 ## Instalação 
 **Linguagem**: Javascript<br>
 **Framework**: React<br>
+
 <!-- Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários. -->
+### Requisitos 
+- *npm* ou *yarn*
+- node v16
+
+<br/>
+
+Para inicializar o projeto digite o comando:
+```
+$ npm run dev
+```
+
+ou 
+
+```
+$ yarn dev
+```
 
 ## Uso 
-Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
+O sistema é composto de 3 etapas:
+- Na primeira o usuário deve adicionar manualmente os indivíduos ou gerar um lista aleatória;
+- Na segunda etapa, ele(a) deve formar as conexões entre os indivíduos registrados;
+- Na terceira e última etapa o usuário escolhe 2 indivíduos e o algoritmo irá verificar se existe conexão entre eles e, caso exista, exibir o caminho dessas conexões
 
-## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
+<!-- ## Outros 
+Quaisquer outras informações sobre seu projeto podem ser descritas abaixo. -->
 
 
 
